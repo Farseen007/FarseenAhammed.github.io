@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Farseen Ahammed — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0D1117;
+    --bg2: #161B22;
+    --bg3: #21262D;
+    --border: #30363D;
+    --teal: #00D4AA;
+    --teal-dim: #00D4AA22;
+    --blue: #58A6FF;
+    --purple: #BC8CFF;
+    --orange: #F0883E;
+    --red: #FF7B72;
+    --text: #E6EDF3;
+    --muted: #8B949E;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .nav-logo span { color: var(--muted); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-name {
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .hero-name .accent { color: var(--teal); }
+  .hero-tagline {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  /* SQL typewriter */
+  .sql-window {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    max-width: 640px;
+    overflow: hidden;
+    margin-bottom: 44px;
+  }
+  .sql-titlebar {
+    background: var(--bg3);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-r { background: #FF5F57; }
+  .dot-y { background: #FFBD2E; }
+  .dot-g { background: #28C840; }
+  .sql-filename {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+  .sql-body {
+    padding: 20px 24px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.8;
+    min-height: 130px;
+  }
+  .kw { color: #FF7B72; }
+  .fn { color: #D2A8FF; }
+  .str { color: #A5D6FF; }
+  .cm { color: var(--muted); font-style: italic; }
+  .cursor {
+    display: inline-block;
+    width: 2px; height: 1.1em;
+    background: var(--teal);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 1px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary { background: var(--teal); color: #0D1117; }
+  .btn-primary:hover { background: #00f5c4; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--teal); border: 1px solid var(--teal); }
+  .btn-outline:hover { background: var(--teal-dim); }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 64px;
+  }
+  .kpi-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .kpi-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-mono);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    padding: 3px 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .skill-panel {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .skill-panel:hover { border-color: var(--teal); }
+  .skill-panel-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .skill-panel-title .icon { font-size: 16px; }
+  .skill-bar-item { margin-bottom: 12px; }
+  .skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    margin-bottom: 5px;
+  }
+  .skill-bar-track {
+    height: 5px;
+    background: var(--bg3);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--teal), var(--blue));
+    width: 0;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--teal), var(--blue));
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .exp-role {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-mono);
+  }
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--teal);
+    background: var(--teal-dim);
+    border: 1px solid var(--teal);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+  .exp-company {
+    font-size: 14px;
+    color: var(--blue);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '▸';
+    color: var(--teal);
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+    top: 2px;
+  }
+
+  /* Achievement chips */
+  .achievement-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .achievement-chip {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .achievement-chip .chip-val { color: var(--teal); font-weight: 700; font-size: 14px; }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+  .project-type {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .project-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-mono);
+    margin-bottom: 10px;
+  }
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    flex: 1;
+    line-height: 1.65;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--teal);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 10px; }
+
+  /* ── CERTS ── */
+  .certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cert-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s;
+    flex-wrap: wrap;
+  }
+  .cert-item:hover { border-color: var(--purple); }
+  .cert-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .cert-issuer {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+  .cert-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--purple);
+    background: #BC8CFF18;
+    border: 1px solid var(--purple);
+    border-radius: 4px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    text-align: center;
+    padding-bottom: 100px;
+  }
+  .contact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 60px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: -40%; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #00D4AA18, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-title {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    margin-bottom: 12px;
+  }
+  .contact-sub { color: var(--muted); margin-bottom: 36px; font-size: 15px; }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--teal); }
+  .contact-link .cl-icon { font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+  footer span { color: var(--teal); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 16px; }
+    .nav-links { gap: 16px; }
+    section { padding: 60px 16px; }
+    .hero-name { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FA<span>();</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">// data analyst portfolio</p>
+  <h1 class="hero-name">Farseen<br><span class="accent">Ahammed</span></h1>
+  <p class="hero-tagline">Turning raw data into decisions that move businesses forward</p>
+
+  <div class="sql-window">
+    <div class="sql-titlebar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <span class="sql-filename">query_farseen.sql</span>
+    </div>
+    <div class="sql-body" id="sqlTyper"></div>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#experience">View Experience ↓</a>
+    <a class="btn btn-outline" href="#contact">Get in Touch →</a>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid reveal">
+    <div class="kpi-card">
+      <div class="kpi-label">Profit Growth Driven</div>
+      <div class="kpi-value">80%</div>
+      <div class="kpi-sub">₹5 Cr → ₹9 Cr YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tools Mastered</div>
+      <div class="kpi-value">6+</div>
+      <div class="kpi-sub">SQL · Excel · Python · Power BI</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Platforms Integrated</div>
+      <div class="kpi-value">3</div>
+      <div class="kpi-sub">Shopify · Browntape · Delhivery</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Experience</div>
+      <div class="kpi-value">1.5<span style="font-size:18px;color:var(--muted)">yr</span></div>
+      <div class="kpi-sub">E-commerce Analytics</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-tag">Skills</span>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-panel reveal">
+      <div class="skill-panel-title"><span class="icon">🗄️</span> Data & Querying</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>SQL (CTEs, Window Functions, Joins)</span><span>90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Advanced Excel (Power Query, Pivots)</span><span>92%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Python · Pandas</span><span>70%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+    </div>
+    <div class="skill-panel reveal">
+      <div class="skill-panel-title"><span class="icon">📊</span> Visualisation & BI</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Power BI Dashboarding</span><span>85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>KPI Reporting & Trend Analysis</span><span>88%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>ETL · Data Transformation</span><span>82%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+      </div>
+    </div>
+    <div class="skill-panel reveal">
+      <div class="skill-panel-title"><span class="icon">🧠</span> Analytics & Strategy</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>RFM Customer Segmentation</span><span>80%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>A/B & Pre-Post Analysis</span><span>75%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Data Validation & Quality</span><span>90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-tag">Experience</span>
+    <h2 class="section-title">Work History</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-card reveal">
+    <div class="exp-header">
+      <div class="exp-role">E-commerce Operations & Data Analyst</div>
+      <div class="exp-period">Dec 2024 – Present</div>
+    </div>
+    <div class="exp-company">KNEETOES · Bangalore, India</div>
+    <ul class="exp-bullets">
+      <li>Extracted, cleaned, and analyzed sales data using SQL and Excel to surface SKU-level trends and support business decisions across operations and marketing.</li>
+      <li>Built and maintained interactive Power BI and Excel dashboards tracking revenue, order volume, and conversion KPIs for leadership visibility.</li>
+      <li>Consolidated multi-platform data from Shopify, Browntape, and Delhivery into unified reporting pipelines.</li>
+      <li>Performed RFM-style customer segmentation to identify high-value and repeat buyers, informing retention strategy.</li>
+      <li>Automated recurring weekly/monthly reports using Excel Power Query, reducing manual processing time significantly.</li>
+      <li>Supported A/B-style comparative analysis and pre-post measurement to evaluate the impact of promotions and operational changes.</li>
+      <li>Implemented structured data validation checks to reduce discrepancies across platforms.</li>
+    </ul>
+    <div class="achievement-row">
+      <div class="achievement-chip"><span class="chip-val">80%</span> Profit Growth</div>
+      <div class="achievement-chip"><span class="chip-val">₹5Cr→₹9Cr</span> Revenue Impact</div>
+      <div class="achievement-chip"><span class="chip-val">↓</span> Data Discrepancies</div>
+      <div class="achievement-chip"><span class="chip-val">⚡</span> Automated Dashboards</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-tag">Projects</span>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-type">Excel · Power Query</div>
+      <div class="project-name">Zomato Restaurant Analysis</div>
+      <div class="project-desc">Built an interactive Excel dashboard to analyze restaurant performance across countries and years. Identified high-potential expansion markets by studying cuisines, revenue trends, customer ratings, and expenditure patterns.</div>
+      <div class="project-tags">
+        <span class="tag">Excel</span>
+        <span class="tag">Power Query</span>
+        <span class="tag">Pivot Tables</span>
+        <span class="tag">Dashboarding</span>
+        <span class="tag">EDA</span>
+      </div>
+      <a class="project-link" href="https://github.com/Farseen007/Zomato-Restaurant-Analysis-Project" target="_blank">View on GitHub →</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-type">SQL · Case Study</div>
+      <div class="project-name">Chinook Music Store Analysis</div>
+      <div class="project-desc">Deep-dive SQL analysis of a digital music store. Leveraged CTEs, window functions, and optimized joins to uncover top artists, genres, regional trends, and customer segments — with data-driven marketing recommendations.</div>
+      <div class="project-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">CTEs</span>
+        <span class="tag">Window Functions</span>
+        <span class="tag">Customer Analysis</span>
+      </div>
+      <a class="project-link" href="https://github.com/Farseen007/Chinook-Music-Store-Case-Study" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-header reveal">
+    <span class="section-tag">Credentials</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="certs-list reveal">
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">HackerRank SQL Certification</div>
+        <div class="cert-issuer">HackerRank · Validated SQL Proficiency</div>
+      </div>
+      <span class="cert-badge">Verified ✓</span>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Data Visualisation: Empowering Business with Effective Insights</div>
+        <div class="cert-issuer">Forage · 2024</div>
+      </div>
+      <span class="cert-badge">Completed</span>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Power BI Workshop Certificate</div>
+        <div class="cert-issuer">Power BI Training</div>
+      </div>
+      <span class="cert-badge">Completed</span>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Data Analytics & Visualization Job Simulation</div>
+        <div class="cert-issuer">Forage</div>
+      </div>
+      <span class="cert-badge">Completed</span>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Bachelor of Engineering – Computer Science</div>
+        <div class="cert-issuer">CSI College of Engineering · 2018–2022</div>
+      </div>
+      <span class="cert-badge">Graduate</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-card reveal">
+    <h2 class="contact-title">Let's work together</h2>
+    <p class="contact-sub">Open to Data Analyst roles where I can turn complex data into clear business impact.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:farseenahammed241@gmail.com"><span class="cl-icon">✉</span>farseenahammed241@gmail.com</a>
+      <a class="contact-link" href="tel:+919544711848"><span class="cl-icon">📱</span>+91 9544711848</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/farseen-ahammed-data-analyst" target="_blank"><span class="cl-icon">🔗</span>linkedin.com/in/farseen-ahammed-data-analyst</a>
+      <a class="contact-link" href="https://github.com/Farseen007" target="_blank"><span class="cl-icon">⌨</span>github.com/Farseen007</a>
+    </div>
+    <a class="btn btn-primary" href="mailto:farseenahammed241@gmail.com">Send a Message →</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built with data. Designed to impress. — <span>Farseen Ahammed</span> · 2025</p>
+</footer>
+
+<script>
+// ── SQL TYPEWRITER ──
+const lines = [
+  { html: '<span class="kw">SELECT</span> name, role, skills, impact' },
+  { html: '<span class="kw">FROM</span>   analysts' },
+  { html: '<span class="kw">WHERE</span>  expertise <span class="kw">IN</span> (<span class="str">\'SQL\'</span>, <span class="str">\'Power BI\'</span>, <span class="str">\'Excel\'</span>)' },
+  { html: '<span class="kw">AND</span>    profit_growth <span class="kw">>=</span> <span class="str">80</span> <span class="cm">-- %</span>' },
+  { html: '<span class="kw">ORDER BY</span> impact <span class="kw">DESC</span>' },
+  { html: '<span class="cm">-- 1 row returned: Farseen Ahammed ✓</span>' },
+];
+
+const typer = document.getElementById('sqlTyper');
+let lineIdx = 0, charIdx = 0, currentHTML = '';
+const cursor = document.createElement('span');
+cursor.className = 'cursor';
+
+function typeNext() {
+  if (lineIdx >= lines.length) {
+    typer.innerHTML = lines.map(l => '<div>' + l.html + '</div>').join('');
+    return;
+  }
+  const raw = lines[lineIdx].html;
+  // Strip tags to count characters
+  const plain = raw.replace(/<[^>]+>/g, '');
+  
+  if (charIdx <= plain.length) {
+    // Rebuild HTML up to charIdx visible chars
+    let visible = 0, result = '', i = 0;
+    while (i < raw.length && visible < charIdx) {
+      if (raw[i] === '<') {
+        let end = raw.indexOf('>', i);
+        result += raw.slice(i, end + 1);
+        i = end + 1;
+      } else {
+        result += raw[i++];
+        visible++;
+      }
+    }
+    typer.innerHTML = lines.slice(0, lineIdx).map(l => '<div>' + l.html + '</div>').join('') +
+      '<div>' + result + '</div>';
+    typer.appendChild(cursor);
+    charIdx++;
+    setTimeout(typeNext, 28);
+  } else {
+    lineIdx++;
+    charIdx = 0;
+    setTimeout(typeNext, 120);
+  }
+}
+setTimeout(typeNext, 600);
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Also observe skill panels directly for bar animations
+document.querySelectorAll('.skill-panel').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
