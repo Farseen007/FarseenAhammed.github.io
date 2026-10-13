@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Farseen Ahammed — Data Analyst</title>
+<title>Farseen Ahammed — Data & Business Analyst</title>
+<meta name="description" content="Farseen Ahammed — Data & Business Analyst in Bangalore. SQL, Python, Power BI and Excel for e-commerce analytics across D2C, marketplaces and retail."/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
@@ -263,7 +264,7 @@
   /* ── SKILLS ── */
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
   .skill-panel {
@@ -392,6 +393,72 @@
     gap: 6px;
   }
   .achievement-chip .chip-val { color: var(--teal); font-weight: 700; font-size: 14px; }
+
+  .exp-card + .exp-card { margin-top: 20px; }
+  .exp-context { font-size: 13px; color: var(--muted); font-style: italic; margin: -12px 0 20px; }
+  .exp-group-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 22px 0 12px;
+  }
+  .exp-group-title:first-of-type { margin-top: 0; }
+  .exp-card.compact { padding: 26px 32px; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; }
+  .about-text {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 28px; color: var(--muted); font-size: 15px; line-height: 1.75;
+  }
+  .about-text p + p { margin-top: 14px; }
+  .about-text strong { color: var(--text); font-weight: 500; }
+  .edu-list { display: flex; flex-direction: column; gap: 12px; }
+  .edu-item {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px;
+    transition: border-color 0.2s;
+  }
+  .edu-item:hover { border-color: var(--blue); }
+  .edu-period { font-family: var(--font-mono); font-size: 11px; color: var(--teal); margin-bottom: 4px; }
+  .edu-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .edu-school { font-size: 13px; color: var(--muted); }
+  .tool-panel { margin-top: 16px; }
+  .tool-rows { display: flex; flex-direction: column; gap: 16px; }
+  .tool-row-label { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .tool-row .project-tags { margin-bottom: 0; }
+
+  /* ── SHOPIFY STORES ── */
+  .stores-intro { color: var(--muted); font-size: 14px; margin: -20px 0 24px; max-width: 720px; }
+  .stores-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .store-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 26px 28px; display: flex; flex-direction: column; gap: 14px;
+    text-decoration: none; color: inherit; position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .store-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, #95BF47, transparent);
+  }
+  .store-card:hover { border-color: #95BF47; transform: translateY(-3px); }
+  .store-top { display: flex; align-items: center; gap: 14px; }
+  .shopify-logo {
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px;
+    background: #95BF4718; border: 1px solid #95BF4755;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .shopify-logo i {
+    display: block; width: 24px; height: 24px; background: #95BF47;
+    -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/shopify.svg') center / contain no-repeat;
+    mask: url('https://cdn.jsdelivr.net/npm/simple-icons@13/icons/shopify.svg') center / contain no-repeat;
+  }
+  .store-name { font-family: var(--font-mono); font-size: 18px; font-weight: 700; color: var(--text); }
+  .store-region { font-family: var(--font-mono); font-size: 11px; color: #95BF47; letter-spacing: 0.1em; text-transform: uppercase; }
+  .store-url { font-family: var(--font-mono); font-size: 13px; color: var(--teal); display: inline-flex; gap: 6px; transition: gap 0.2s; }
+  .store-card:hover .store-url { gap: 10px; }
+  .store-card .project-tags { margin-bottom: 0; }
 
   /* ── PROJECTS ── */
   .projects-grid {
@@ -575,6 +642,10 @@
     .nav-links { gap: 16px; }
     section { padding: 60px 16px; }
     .hero-name { font-size: 36px; }
+    .nav-links { overflow-x: auto; max-width: 70vw; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-card, .exp-card.compact { padding: 24px 20px; }
+    .skills-grid, .projects-grid, .stores-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -587,6 +658,7 @@
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
+    <a href="#stores">Stores</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
@@ -594,9 +666,9 @@
 
 <!-- HERO -->
 <section id="hero">
-  <p class="hero-eyebrow">// data analyst portfolio</p>
+  <p class="hero-eyebrow">// data &amp; business analyst portfolio</p>
   <h1 class="hero-name">Farseen<br><span class="accent">Ahammed</span></h1>
-  <p class="hero-tagline">Turning raw data into decisions that move businesses forward</p>
+  <p class="hero-tagline">Turning multi-channel e-commerce data into decisions on sales, inventory and operations</p>
 
   <div class="sql-window">
     <div class="sql-titlebar">
@@ -611,6 +683,7 @@
   <div class="hero-cta">
     <a class="btn btn-primary" href="#experience">View Experience ↓</a>
     <a class="btn btn-outline" href="#contact">Get in Touch →</a>
+    <a class="btn btn-outline" href="https://www.linkedin.com/in/farseen-ahammed-data-analyst" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
 
   <!-- KPI CARDS -->
@@ -621,19 +694,52 @@
       <div class="kpi-sub">₹5 Cr → ₹9 Cr YoY</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Tools Mastered</div>
-      <div class="kpi-value">6+</div>
-      <div class="kpi-sub">SQL · Excel · Python · Power BI</div>
+      <div class="kpi-label">SKUs Analyzed</div>
+      <div class="kpi-value">500+</div>
+      <div class="kpi-sub">Shopify · Myntra · Amazon · Nordstrom</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Platforms Integrated</div>
-      <div class="kpi-value">3</div>
-      <div class="kpi-sub">Shopify · Browntape · Delhivery</div>
+      <div class="kpi-label">COD RTO Reduced</div>
+      <div class="kpi-value">~10%</div>
+      <div class="kpi-sub">Automated order confirmation</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Experience</div>
-      <div class="kpi-value">1.5<span style="font-size:18px;color:var(--muted)">yr</span></div>
-      <div class="kpi-sub">E-commerce Analytics</div>
+      <div class="kpi-value">2+<span style="font-size:18px;color:var(--muted)">yr</span></div>
+      <div class="kpi-sub">Data Analysis Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-tag">About</span>
+    <h2 class="section-title">Profile</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Data and Business Analyst with a <strong>Computer Science engineering</strong> background, <strong>2+ years of data analysis experience</strong> and a Data Science program from <strong>Newton School</strong>.</p>
+      <p>Hands-on experience in e-commerce analytics across a multi-brand, multi-channel business: <strong>D2C Shopify, Myntra, Nordstrom Marketplace and offline retail stores</strong>. I use SQL, Advanced Excel, Python (Pandas) and Power BI to build dashboards, track KPIs and turn data from many platforms into decisions on sales, inventory and operations.</p>
+      <p>On the business analysis side, I gather requirements, evaluate vendors and systems, map processes and automate workflows.</p>
+    </div>
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <div class="edu-period">Jun 2024 – Jun 2025</div>
+        <div class="edu-name">Data Science Program</div>
+        <div class="edu-school">Newton School</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period">2018 – 2022</div>
+        <div class="edu-name">Bachelor of Engineering – Computer Science</div>
+        <div class="edu-school">CSI College of Engineering (Anna University)</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-period">Based in</div>
+        <div class="edu-name">Bangalore, India</div>
+        <div class="edu-school">Open to Data &amp; Business Analyst roles</div>
+      </div>
     </div>
   </div>
 </section>
@@ -683,12 +789,57 @@
         <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
       </div>
       <div class="skill-bar-item">
-        <div class="skill-bar-label"><span>A/B & Pre-Post Analysis</span><span>75%</span></div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+        <div class="skill-bar-label"><span>Statistical, Trend & Pre-Post Analysis</span><span>78%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
       </div>
       <div class="skill-bar-item">
         <div class="skill-bar-label"><span>Data Validation & Quality</span><span>90%</span></div>
         <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+    </div>
+    <div class="skill-panel reveal">
+      <div class="skill-panel-title"><span class="icon">🧩</span> Business Analysis</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Requirements Gathering & Vendor Evaluation</span><span>85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Process Mapping & Workflow Automation</span><span>85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Stakeholder Reporting & Cross-functional Work</span><span>88%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-panel tool-panel reveal">
+    <div class="skill-panel-title"><span class="icon">🛠️</span> Platforms &amp; Tools</div>
+    <div class="tool-rows">
+      <div class="tool-row">
+        <div class="tool-row-label">Analytics &amp; BI</div>
+        <div class="project-tags"><span class="tag">SQL</span><span class="tag">Python (Pandas)</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Advanced Excel</span><span class="tag">Power Query</span><span class="tag">Pivot Tables</span><span class="tag">Power BI</span></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Statistics</div>
+        <div class="project-tags"><span class="tag">Descriptive Statistics</span><span class="tag">Correlation</span><span class="tag">Variance &amp; Trend Analysis</span><span class="tag">Learning: Hypothesis Testing · Regression</span></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">E-commerce &amp; ERP</div>
+        <div class="project-tags"><span class="tag">Shopify</span><span class="tag">Unicommerce</span><span class="tag">Browntape</span><span class="tag">Myntra Partner Portal</span><span class="tag">Nordstrom (Mirakl)</span><span class="tag">Google Merchant Center</span><span class="tag">Amazon Seller Central</span></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Logistics</div>
+        <div class="project-tags"><span class="tag">Delhivery</span><span class="tag">Shiprocket</span><span class="tag">ShipGlobal</span></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">CRM &amp; Automation</div>
+        <div class="project-tags"><span class="tag">OptCulture</span><span class="tag">Bitespeed</span><span class="tag">QuickReply</span><span class="tag">WhatsApp Business API (Karix)</span><span class="tag">Shopify Flow</span><span class="tag">Pabbly Connect</span><span class="tag">GPT-based chatbots</span></div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-row-label">Development</div>
+        <div class="project-tags"><span class="tag">PHP (Laravel Lumen)</span><span class="tag">REST APIs</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Shopify Liquid</span></div>
       </div>
     </div>
   </div>
@@ -703,25 +854,103 @@
   </div>
   <div class="exp-card reveal">
     <div class="exp-header">
-      <div class="exp-role">E-commerce Operations & Data Analyst</div>
+      <div class="exp-role">Data Analyst – E-commerce Operations &amp; Inventory</div>
       <div class="exp-period">Dec 2024 – Present</div>
     </div>
-    <div class="exp-company">KNEETOES · Bangalore, India</div>
+    <div class="exp-company">KNEETOES (Two Bros Inc) · Bangalore, India</div>
+    <p class="exp-context">Footwear (KNEETOES) and ethnic wear (ADAA) brands selling through D2C Shopify, Myntra, Nordstrom Marketplace, 5 company-owned retail stores and exports to the US.</p>
+
+    <div class="exp-group-title">Data Analytics &amp; Reporting</div>
     <ul class="exp-bullets">
-      <li>Extracted, cleaned, and analyzed sales data using SQL and Excel to surface SKU-level trends and support business decisions across operations and marketing.</li>
-      <li>Built and maintained interactive Power BI and Excel dashboards tracking revenue, order volume, and conversion KPIs for leadership visibility.</li>
-      <li>Consolidated multi-platform data from Shopify, Browntape, and Delhivery into unified reporting pipelines.</li>
-      <li>Performed RFM-style customer segmentation to identify high-value and repeat buyers, informing retention strategy.</li>
-      <li>Automated recurring weekly/monthly reports using Excel Power Query, reducing manual processing time significantly.</li>
-      <li>Supported A/B-style comparative analysis and pre-post measurement to evaluate the impact of promotions and operational changes.</li>
-      <li>Implemented structured data validation checks to reduce discrepancies across platforms.</li>
+      <li>Used SQL and Excel to extract, clean and combine sales, order and SKU-level data (500+ SKUs) from Shopify, Browntape and Delhivery into daily and weekly performance reports.</li>
+      <li>Designed and maintained interactive Power BI and Excel dashboards tracking revenue, order volume, SKU trends and conversion metrics; ran trend and variance analysis across reporting periods.</li>
+      <li>Analyzed customer behaviour, including repeat purchase patterns and RFM segmentation, to find high-value customers; supported pre-post analysis of campaigns and promotions.</li>
+      <li>Used Python (Pandas) to reshape wide-format stock tables into long-format SKU-size lists across footwear and ethnic wear catalogs, and to bulk-apply pricing rules to Shopify product export files.</li>
+      <li>Automated recurring reports with Excel Power Query and Pivot Tables, saving 2+ hours of manual work every week, and wrote a Power Query guide so team members could run transformations themselves.</li>
+      <li>Built a PIN code serviceability dataset (1,684 post offices, 209 unique PINs) for courier imports.</li>
     </ul>
+
+    <div class="exp-group-title">Business Analysis &amp; Process Improvement</div>
+    <ul class="exp-bullets">
+      <li>Led the evaluation of three POS systems (GoFrugal, QueueBuster, Wondersoft) for integration with the Unicommerce backend, comparing cost, API requirements and delivery timelines, and worked with vendor and Unicommerce teams to scope the integration.</li>
+      <li>Designed a COD order confirmation workflow using Shopify Flow, Pabbly Connect and a WhatsApp AI agent, cutting RTO on cash-on-delivery orders by about 10%.</li>
+      <li>Built a GPT-based WhatsApp customer support assistant (knowledge base, size chart data) and ran customer campaigns and broadcasts through CRM tools (OptCulture, Bitespeed, QuickReply).</li>
+      <li>Put together the full offline store universe (store codes, formats, locations) for Myntra's Omnichannel team to assess expansion.</li>
+      <li>Traced a drop in Google Merchant Center product listings back to a Shopify feed sync issue and fixed it.</li>
+    </ul>
+
+    <div class="exp-group-title">Marketplace, Catalog &amp; Operations</div>
+    <ul class="exp-bullets">
+      <li>Managed product catalog feeds for 500+ SKUs across Shopify, Myntra, Amazon and Nordstrom Marketplace (Mirakl), including size attribute mapping and content compliance.</li>
+      <li>Prepared export documentation (GST, IEC, LUT, e-way bills) for a ~2,500-pair footwear shipment to the US, and resolved courier disputes (Shiprocket, Ekart, ShipGlobal) using shipment weight and delivery data.</li>
+      <li>Customized the Shopify storefront (Liquid, JavaScript, CSS): tiered discount messaging, fit recommendation metafields and navigation updates. Built and launched the ADAA brand website (Netlify, custom domain).</li>
+    </ul>
+
     <div class="achievement-row">
-      <div class="achievement-chip"><span class="chip-val">80%</span> Profit Growth</div>
-      <div class="achievement-chip"><span class="chip-val">₹5Cr→₹9Cr</span> Revenue Impact</div>
+      <div class="achievement-chip"><span class="chip-val">80%</span> Profit Growth via YoY Sales Dashboard</div>
+      <div class="achievement-chip"><span class="chip-val">₹5Cr→₹9Cr</span> Profit Impact</div>
+      <div class="achievement-chip"><span class="chip-val">~10%</span> COD RTO Reduced</div>
+      <div class="achievement-chip"><span class="chip-val">2+ hrs</span> Saved Weekly</div>
       <div class="achievement-chip"><span class="chip-val">↓</span> Data Discrepancies</div>
-      <div class="achievement-chip"><span class="chip-val">⚡</span> Automated Dashboards</div>
     </div>
+  </div>
+
+  <div class="exp-card compact reveal">
+    <div class="exp-header">
+      <div class="exp-role">Software Developer</div>
+      <div class="exp-period">Apr 2024 – Aug 2024</div>
+    </div>
+    <div class="exp-company">Bpract Software Solutions LLP · Kozhikode, Kerala</div>
+    <ul class="exp-bullets">
+      <li>Developed backend features and APIs using Laravel Lumen for client-facing applications, turning functional requirements into working business logic.</li>
+      <li>Handled database interactions and API integrations to keep data flowing reliably between application components; debugged and fixed backend issues.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card compact reveal">
+    <div class="exp-header">
+      <div class="exp-role">Data Analyst Intern</div>
+      <div class="exp-period">Feb 2023 – Jul 2023</div>
+    </div>
+    <div class="exp-company">Soften Technologies · Kochi, Kerala</div>
+    <ul class="exp-bullets">
+      <li>Cleaned and prepared business datasets and ran exploratory analysis to find trends and patterns.</li>
+      <li>Created visual summaries, reports and slide decks that turned findings into clear stories for internal reviews and client presentations.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SHOPIFY STORES -->
+<section id="stores">
+  <div class="section-header reveal">
+    <span class="section-tag">Shopify</span>
+    <h2 class="section-title">Stores I Manage</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="stores-intro reveal">Live Shopify storefronts for KNEETOES, where I handle catalog feeds, storefront customization (Liquid, JavaScript, CSS), Shopify Flow automation and sales reporting.</p>
+  <div class="stores-grid">
+    <a class="store-card reveal" href="https://www.kneetoes.us/" target="_blank" rel="noopener">
+      <div class="store-top">
+        <div class="shopify-logo" title="Shopify"><i aria-hidden="true"></i></div>
+        <div>
+          <div class="store-name">KNEETOES US</div>
+          <div class="store-region">Shopify · United States</div>
+        </div>
+      </div>
+      <div class="project-tags"><span class="tag">Shopify</span><span class="tag">Catalog &amp; Product Feeds</span><span class="tag">Storefront Customization</span><span class="tag">US Market</span></div>
+      <span class="store-url">kneetoes.us ↗</span>
+    </a>
+    <a class="store-card reveal" href="https://kneetoes.store/" target="_blank" rel="noopener">
+      <div class="store-top">
+        <div class="shopify-logo" title="Shopify"><i aria-hidden="true"></i></div>
+        <div>
+          <div class="store-name">KNEETOES India</div>
+          <div class="store-region">Shopify · India D2C</div>
+        </div>
+      </div>
+      <div class="project-tags"><span class="tag">Shopify</span><span class="tag">Liquid · JS · CSS</span><span class="tag">Shopify Flow</span><span class="tag">COD Automation</span></div>
+      <span class="store-url">kneetoes.store ↗</span>
+    </a>
   </div>
 </section>
 
@@ -736,7 +965,7 @@
     <div class="project-card reveal">
       <div class="project-type">Excel · Power Query</div>
       <div class="project-name">Zomato Restaurant Analysis</div>
-      <div class="project-desc">Built an interactive Excel dashboard to analyze restaurant performance across countries and years. Identified high-potential expansion markets by studying cuisines, revenue trends, customer ratings, and expenditure patterns.</div>
+      <div class="project-desc">Interactive Excel dashboard built with Power Query, Pivot Tables and dynamic tile cards to visualize restaurant sales and performance. Country-wise and year-wise analysis of cuisines, revenue, ratings and spend to recommend high-potential expansion markets.</div>
       <div class="project-tags">
         <span class="tag">Excel</span>
         <span class="tag">Power Query</span>
@@ -749,7 +978,7 @@
     <div class="project-card reveal">
       <div class="project-type">SQL · Case Study</div>
       <div class="project-name">Chinook Music Store Analysis</div>
-      <div class="project-desc">Deep-dive SQL analysis of a digital music store. Leveraged CTEs, window functions, and optimized joins to uncover top artists, genres, regional trends, and customer segments — with data-driven marketing recommendations.</div>
+      <div class="project-desc">Advanced SQL (CTEs, window functions, optimized joins) to analyze top-selling artists, genres, albums and customer purchase behaviour. Revenue trends, regional performance and customer segments turned into data-driven recommendations for targeted marketing.</div>
       <div class="project-tags">
         <span class="tag">SQL</span>
         <span class="tag">CTEs</span>
@@ -772,14 +1001,14 @@
     <div class="cert-item">
       <div>
         <div class="cert-name">HackerRank SQL Certification</div>
-        <div class="cert-issuer">HackerRank · Validated SQL Proficiency</div>
+        <div class="cert-issuer">HackerRank · CTEs, Window Functions, Joins, Aggregations</div>
       </div>
       <span class="cert-badge">Verified ✓</span>
     </div>
     <div class="cert-item">
       <div>
         <div class="cert-name">Data Visualisation: Empowering Business with Effective Insights</div>
-        <div class="cert-issuer">Forage · 2024</div>
+        <div class="cert-issuer">Tata Group · Job Simulation (Forage, 2024)</div>
       </div>
       <span class="cert-badge">Completed</span>
     </div>
@@ -793,16 +1022,9 @@
     <div class="cert-item">
       <div>
         <div class="cert-name">Data Analytics & Visualization Job Simulation</div>
-        <div class="cert-issuer">Forage</div>
+        <div class="cert-issuer">Accenture North America · Job Simulation (Forage)</div>
       </div>
       <span class="cert-badge">Completed</span>
-    </div>
-    <div class="cert-item">
-      <div>
-        <div class="cert-name">Bachelor of Engineering – Computer Science</div>
-        <div class="cert-issuer">CSI College of Engineering · 2018–2022</div>
-      </div>
-      <span class="cert-badge">Graduate</span>
     </div>
   </div>
 </section>
@@ -811,10 +1033,11 @@
 <section id="contact">
   <div class="contact-card reveal">
     <h2 class="contact-title">Let's work together</h2>
-    <p class="contact-sub">Open to Data Analyst roles where I can turn complex data into clear business impact.</p>
+    <p class="contact-sub">Open to Data Analyst and Business Analyst roles where I can turn complex data into clear business impact.</p>
     <div class="contact-links">
       <a class="contact-link" href="mailto:farseenahammed241@gmail.com"><span class="cl-icon">✉</span>farseenahammed241@gmail.com</a>
       <a class="contact-link" href="tel:+919544711848"><span class="cl-icon">📱</span>+91 9544711848</a>
+      <span class="contact-link"><span class="cl-icon">📍</span>Bangalore, India</span>
       <a class="contact-link" href="https://www.linkedin.com/in/farseen-ahammed-data-analyst" target="_blank"><span class="cl-icon">🔗</span>linkedin.com/in/farseen-ahammed-data-analyst</a>
       <a class="contact-link" href="https://github.com/Farseen007" target="_blank"><span class="cl-icon">⌨</span>github.com/Farseen007</a>
     </div>
@@ -823,15 +1046,15 @@
 </section>
 
 <footer>
-  <p>Built with data. Designed to impress. — <span>Farseen Ahammed</span> · 2025</p>
+  <p>Built with data. Designed to impress. — <span>Farseen Ahammed</span> · 2026</p>
 </footer>
 
 <script>
 // ── SQL TYPEWRITER ──
 const lines = [
-  { html: '<span class="kw">SELECT</span> name, role, skills, impact' },
+  { html: '<span class="kw">SELECT</span> name, role, skills, impact <span class="cm">-- data + business</span>' },
   { html: '<span class="kw">FROM</span>   analysts' },
-  { html: '<span class="kw">WHERE</span>  expertise <span class="kw">IN</span> (<span class="str">\'SQL\'</span>, <span class="str">\'Power BI\'</span>, <span class="str">\'Excel\'</span>)' },
+  { html: '<span class="kw">WHERE</span>  expertise <span class="kw">IN</span> (<span class="str">\'SQL\'</span>, <span class="str">\'Python\'</span>, <span class="str">\'Power BI\'</span>, <span class="str">\'Excel\'</span>)' },
   { html: '<span class="kw">AND</span>    profit_growth <span class="kw">>=</span> <span class="str">80</span> <span class="cm">-- %</span>' },
   { html: '<span class="kw">ORDER BY</span> impact <span class="kw">DESC</span>' },
   { html: '<span class="cm">-- 1 row returned: Farseen Ahammed ✓</span>' },
